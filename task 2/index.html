@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoon To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <input type="text" id="new-task" placeholder="Add new tasks separated by commas...">
+        <button id="add-task">Add</button>
+        <ul id="task-list">
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('add-task').addEventListener('click', function() {
+            var taskInput = document.getElementById('new-task');
+            var tasks = taskInput.value.split(',').map(task => task.trim()).filter(task => task.length > 0);
+            tasks.forEach(taskText => {
+                if (taskText) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = taskText;
+                    document.getElementById('task-list').appendChild(listItem);
+                    listItem.classList.add('fade-in');
+                }
+            });
+            taskInput.value = '';
+        });
+    </script>
+</body>
+</html>
